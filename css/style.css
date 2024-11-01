@@ -168,7 +168,9 @@ h5, h6 {
     gap: 1.25rem;
     margin-top: 0.125rem;
 }
-
+.project-content p{
+    font-size: 0.9;
+}
 .feature-card {
     background: rgba(108, 128, 128, 0.3);
     border-radius: 0.5rem;

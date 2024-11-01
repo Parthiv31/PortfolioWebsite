@@ -114,26 +114,52 @@
     });
   }
 
-  // Add animation to project cards
+  // Initialize Intersection Observer for project cards, heading, and contact section
   const projectCards = select('.feature-card', true);
-  projectCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    setTimeout(() => {
-      card.style.transition = 'opacity 1s ease, transform 1s ease';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, index * 300); // Increased delay for better staggering
-  });
+  const projectsHeading = select('#projects-heading'); // Adjust this selector to match your HTML structure
+  const contactSection = select('#contact'); // Adjust this selector to match your HTML structure
+  const observerOptions = {
+    root: null, // use the viewport as the container
+    rootMargin: '0px',
+    threshold: 0.1 // trigger when at least 10% of the card or section is visible
+  };
 
-  // Initialize AOS (Animate On Scroll)
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1200,  // Slower animations
-      easing: 'ease-in-out',
-      once: true,      // Animation will only happen once
-      mirror: false    // No repeat of animations on scroll up
+  const animateElement = (element) => {
+    element.style.transition = 'opacity 1s ease, transform 1s ease';
+    element.style.opacity = '1';
+    element.style.transform = 'translateY(0)';
+  };
+
+  // Create the observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate the element when it is in view
+        animateElement(entry.target);
+        // Stop observing the element once it has been animated
+        observer.unobserve(entry.target);
+      }
     });
-  });
-})();
+  }, observerOptions);
 
+  // Initial setup for project cards
+  projectCards.forEach((card) => {
+    card.style.opacity = '0'; // Initially hidden
+    card.style.transform = 'translateY(30px)'; // Shifted down
+    observer.observe(card); // Observe each card
+  });
+
+  // Initial setup for the projects heading
+  if (projectsHeading) {
+    projectsHeading.style.opacity = '0'; // Initially hidden
+    projectsHeading.style.transform = 'translateY(30px)'; // Shifted down
+    observer.observe(projectsHeading); // Observe the heading
+  }
+
+  // Initial setup for the contact section
+  if (contactSection) {
+    contactSection.style.opacity = '0'; // Initially hidden
+    contactSection.style.transform = 'translateY(30px)'; // Shifted down
+    observer.observe(contactSection); // Observe the contact section
+  }
+})();

@@ -4,7 +4,7 @@
   const select = (el, all = false) => {
     el = el.trim();
     return all ? [...document.querySelectorAll(el)] : document.querySelector(el);
-  }
+  };
 
   const on = (type, el, listener, all = false) => {
     const selectEl = select(el, all);
@@ -15,11 +15,11 @@
         selectEl.addEventListener(type, listener);
       }
     }
-  }
+  };
 
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener);
-  }
+  };
 
   let navbarlinks = select('#navbar .scrollto', true);
   const navbarlinksActive = () => {
@@ -30,7 +30,7 @@
       if (!section) return;
       navbarlink.classList.toggle('active', position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight));
     });
-  }
+  };
 
   window.addEventListener('load', navbarlinksActive);
   onscroll(document, navbarlinksActive);
@@ -41,13 +41,13 @@
       top: elementPos,
       behavior: 'smooth'
     });
-  }
+  };
 
   const backtotop = select('.back-to-top');
   if (backtotop) {
     const toggleBacktotop = () => {
       backtotop.classList.toggle('active', window.scrollY > 100);
-    }
+    };
     window.addEventListener('load', toggleBacktotop);
     onscroll(document, toggleBacktotop);
   }
@@ -107,73 +107,33 @@
       handler: function() {
         const progress = select('.progress .progress-bar', true);
         progress.forEach(el => {
+          el.style.transition = 'width 1.5s ease-in-out';
           el.style.width = el.getAttribute('aria-valuenow') + '%';
         });
       }
     });
   }
 
-  window.addEventListener('load', () => {
-    const portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      const portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
-      });
-
-      const portfolioFilters = select('#portfolio-flters li', true);
-      on('click', '#portfolio-flters li', function(e) {
-        e.preventDefault();
-        portfolioFilters.forEach(el => el.classList.remove('filter-active'));
-        this.classList.add('filter-active');
-        portfolioIsotope.arrange({ filter: this.getAttribute('data-filter') });
-        portfolioIsotope.on('arrangeComplete', () => AOS.refresh());
-      }, true);
-    }
+  // Add animation to project cards
+  const projectCards = select('.feature-card', true);
+  projectCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 1s ease, transform 1s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, index * 300); // Increased delay for better staggering
   });
 
-  const portfolioLightbox = GLightbox({ selector: '.portfolio-lightbox' });
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  });
-
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
+  // Initialize AOS (Animate On Scroll)
   window.addEventListener('load', () => {
     AOS.init({
-      duration: 1000,
+      duration: 1200,  // Slower animations
       easing: 'ease-in-out',
-      once: true,
-      mirror: false
+      once: true,      // Animation will only happen once
+      mirror: false    // No repeat of animations on scroll up
     });
   });
-
 })();
+

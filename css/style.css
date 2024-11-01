@@ -108,7 +108,7 @@ h1 {
     font-size: clamp(2rem, 5vw, 5rem);
     margin-bottom: 1.5rem;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ffffff, #00ffff);
+    background: linear-gradient(to right, #ffffff, #5ff8f8);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -162,15 +162,16 @@ h5, h6 {
     animation: fadeIn 1s ease forwards;
 }
 
+
+
+
 .project-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.25rem;
     margin-top: 0.125rem;
 }
-.project-content p{
-    font-size: 0.9;
-}
+
 .feature-card {
     background: rgba(108, 128, 128, 0.3);
     border-radius: 0.5rem;
@@ -185,14 +186,14 @@ h5, h6 {
 }
 
 .feature-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
-.feature-card img {
-    width: 80px;
-    height: auto;
-    margin-bottom: 1rem;
+.feature-card p{
+    font-size: 0.9rem;
 }
+
 
 .feature-card:hover {
     background: rgba(51, 51, 51, 0.9);

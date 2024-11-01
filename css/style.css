@@ -1,36 +1,29 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap');
 
-/* General reset to prevent horizontal scrolling */
+/* General reset and base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Prevent horizontal scrolling on smaller screens */
-body {
-    overflow-x: hidden;
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-    background-color: #000000;
-    margin: 5rem 3rem 2rem 3rem;
-}
-
-
-/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     background-color: #000000;
-    margin: 5rem 3rem 2rem 3rem;
+    margin: 2rem 1rem 0; /* Update 1: Added margins to body */
     padding: 0;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .container {
-    max-width: 75%;
-    margin: 1.25rem auto;
-    padding: 0 1.875rem;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem; /* Update 2: Adjusted container padding */
 }
 
 /* Background effect */
@@ -41,7 +34,7 @@ body {
     right: 0;
     bottom: 0;
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, rgba(169, 169, 169, 0.3) 40%, rgba(0, 0, 0, 0.7) 100%);
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -50,21 +43,41 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.875rem 0;
+    padding: 1rem 0;
+    flex-wrap: wrap;
 }
 
-header .logo {
-    font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
+.logo {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #333333, #000000);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo::before {
+    content: "PA";
+    position: absolute;
+    background: linear-gradient(135deg, #ffffff, #cccccc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeIn 1s ease;
+    background-clip: text;
+    text-fill-color: transparent;
 }
 
 nav {
     display: flex;
-    gap: 2.5rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -72,7 +85,7 @@ nav a {
     text-decoration: none;
     transition: color 0.3s ease;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     opacity: 0;
     animation: fadeIn 1.5s ease forwards;
 }
@@ -80,77 +93,103 @@ nav a {
 nav a:hover {
     color: #ffffff;
     text-shadow: 
-        0 0 0.3125rem rgba(255, 255, 255, 0.6),
-        0 0 0.625rem rgba(255, 255, 255, 0.4),
-        0 0 0.9375rem rgba(255, 255, 255, 0.3);
+        0 0 5px rgba(255, 255, 255, 0.6),
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Hero Section Styles */
 .hero-section {
-    padding: 6.25rem 0;
+    padding: 6rem 0 4rem; /* Update 3: Added more top margin to hero section */
     text-align: center;
 }
 
 h1 {
-    font-size: 5rem;
-    margin-bottom: 1.875rem;
+    font-size: clamp(2rem, 5vw, 5rem);
+    margin-bottom: 1.5rem;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    background: linear-gradient(to right, #ffffff, #00ffff);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
     opacity: 0;
     animation: fadeIn 1s ease forwards;
 }
 
+h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #ffffff, #00ffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+h4 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+h5, h6 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+
 .hero-section p {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     opacity: 0;
     animation: slideUp 1.5s ease forwards;
 }
 
 /* Projects Section Styles */
 .projects-section {
-    padding: 6.25rem 1.875rem;
+    padding: 4rem 1rem;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
 
 .projects-section h2 {
-    font-size: 4rem;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     animation: fadeIn 1s ease forwards;
 }
 
 .project-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.25rem;
     margin-top: 0.125rem;
 }
 
-/* Initial state for cards */
+
 .feature-card {
-    background-color: rgba(18, 18, 18, 0.8);
+    background: linear-gradient(135deg, #333333, #000000);
     border-radius: 0.5rem;
-    padding: 1.875rem;
+    padding: 1.5rem;
     text-align: center;
     transition: transform 0.3s;
-    margin-bottom: 1.875rem;
+    margin-bottom: 1.5rem;
     border: 1px solid #333333;
     backdrop-filter: blur(5px);
     opacity: 0;
-    transform: translateY(1.875rem);
+    transform: translateY(30px);
 }
 
-/* Animation on scroll */
 .feature-card.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.feature-card h3{
+    font-size: 1.4rem;
 }
 
 /* Contacts Section Styles */
@@ -164,23 +203,18 @@ h1 {
 }
 
 .contacts-section h2 {
-    font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     margin-bottom: 1.25rem;
     animation: fadeIn 1s ease forwards;
 }
 
 .contact-info {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.5rem);
     color: #f5f5f5;
     animation: fadeIn 1.2s ease forwards;
 }
 
 .contact-info a {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -188,15 +222,15 @@ h1 {
 
 .contact-info a:hover {
     text-shadow: 
-        0 0 0.3125rem rgba(255, 255, 255, 0.6),
-        0 0 0.625rem rgba(255, 255, 255, 0.4),
-        0 0 0.9375rem rgba(255, 255, 255, 0.3);
+        0 0 5px rgba(255, 255, 255, 0.6),
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Footer Styles */
 footer {
-    background-color: rgba(10, 10, 10, 0.9);
-    padding: 1.25rem 0;
+    background: linear-gradient(to bottom, #333333, #000000);
+    padding: 1rem 0;
     border-top: 1px solid #333333;
     backdrop-filter: blur(5px);
 }
@@ -205,19 +239,15 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.footer-content .text-gray {
-    background: linear-gradient(to right, #f0f0f0, #d4d4d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
+.footer-content .text-gray,
 .footer-content .footer-links a {
     background: linear-gradient(to right, #f0f0f0, #d4d4d4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-left: 1.25rem;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -232,7 +262,7 @@ footer {
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: translateY(1.25rem);
+        transform: translateY(20px);
     }
     100% {
         opacity: 1;
@@ -243,7 +273,7 @@ footer {
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(1.25rem);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -251,38 +281,52 @@ footer {
     }
 }
 
-/* Mobile-friendly adjustments */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    #navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #fff;
-      z-index: 999;
+    header {
+        flex-direction: column;
+        align-items: flex-start;
     }
-  
-    .back-to-top {
-      bottom: 3.125rem;
-      right: 1.25rem;
-      width: 2.5rem;
-      height: 2.5rem;
+
+    nav {
+        margin-top: 1rem;
     }
-  
-    h1, h2, h3, .section-title {
-      font-size: 1.2rem;
-      margin-top: 0.625rem;
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
     }
-  
-    .container {
-      padding: 0.9375rem;
+
+    .hero-section,
+    .projects-section {
+        padding: 2rem 0;
     }
-  
-    .skills-content, .feature-card {
-      margin-bottom: 1.25rem;
-    }
-    
+
     .feature-card {
-      width: 100%;
-      margin-bottom: 0.9375rem;
+        padding: 1rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero-section,
+    .projects-section {
+        padding: 1.5rem 0;
     }
 }

@@ -1,6 +1,9 @@
 (function() {
   "use strict";
 
+
+
+
   const select = (el, all = false) => {
     el = el.trim();
     return all ? [...document.querySelectorAll(el)] : document.querySelector(el);

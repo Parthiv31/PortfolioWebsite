@@ -191,7 +191,7 @@ h5, h6 {
 }
 
 .feature-card p{
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 
@@ -205,7 +205,8 @@ h5, h6 {
     text-align: center;
     background: rgba(108, 120, 128, 0.3);
     border-radius: 0.5rem;
-    margin: 1.25rem 0;
+    margin-top: 1.25rem;
+    margin-bottom: 3rem;
     backdrop-filter: blur(5px);
 }
 
@@ -236,11 +237,8 @@ h5, h6 {
 
 /* Footer Styles */
 footer {
-    background: rgba(128, 128, 128, 0.3);
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0 2.2rem 0;
     backdrop-filter: blur(10px);
-    margin-bottom: 0.7rem;
 }
 
 .footer-content {
@@ -251,20 +249,6 @@ footer {
     gap: 1rem;
 }
 
-.footer-content .text-gray,
-.footer-content .footer-links a {
-    background: linear-gradient(to right, #f0f0f0, #d4d4d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-content .footer-links a:hover {
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 /* Animations */
 @keyframes fadeIn {
